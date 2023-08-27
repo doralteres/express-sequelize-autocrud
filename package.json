@@ -1,6 +1,6 @@
 {
   "name": "ts-module-template",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "repository": "git@github.com:doralteres/ts-module-template.git",
   "author": "Dor Alteresku <doralteres@gmail.com>",
