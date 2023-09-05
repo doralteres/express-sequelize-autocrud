@@ -23,12 +23,14 @@ export const checkFilterableFields = (filterableFields: customFields = []) => {
     const {_sort, _order, _start, _end, ...where} = req.query;
     if (
       where &&
-      !(await isIncludeExcludeMatchCriteria(
-        filterableFields,
-        Object.keys(where),
-        req,
-        res
-      ))
+      !(
+        await isIncludeExcludeMatchCriteria(
+          filterableFields,
+          Object.keys(where),
+          req,
+          res
+        )
+      ).result
     ) {
       res
         .status(400)
@@ -44,12 +46,14 @@ export const checkSortableFields = (sortableFields: customFields = []) => {
     const {_sort} = req.query;
     if (
       _sort &&
-      !(await isIncludeExcludeMatchCriteria(
-        sortableFields,
-        _sort.toString(),
-        req,
-        res
-      ))
+      !(
+        await isIncludeExcludeMatchCriteria(
+          sortableFields,
+          _sort.toString(),
+          req,
+          res
+        )
+      ).result
     ) {
       res.status(400).send(`Can't sort by field [${_sort}]`);
     } else {

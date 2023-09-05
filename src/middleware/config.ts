@@ -23,9 +23,13 @@ export const isIncludeExcludeMatchCriteria = async (
   const toTest = Array.isArray(fieldToTest) ? fieldToTest : [fieldToTest];
   if ('include' in fields || Array.isArray(fields)) {
     const includables = Array.isArray(fields) ? fields : fields.include;
-    return toTest.filter(f => includables.indexOf(f) === -1).length === 0;
+    const problematicFields = toTest.filter(f => includables.indexOf(f) === -1);
+    return {result: problematicFields.length === 0, problematicFields};
   } else {
-    return toTest.filter(f => fields.exclude.indexOf(f) !== -1).length === 0;
+    const problematicFields = toTest.filter(
+      f => fields.exclude.indexOf(f) !== -1
+    );
+    return {result: problematicFields.length === 0, problematicFields};
   }
 };
 
