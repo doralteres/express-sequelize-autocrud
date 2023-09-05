@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {Request, Response} from 'express';
-import {customFields, expressCrudProps, sequelizePropOrFunc} from '../types';
+import {NextFunction, Request, Response} from 'express';
+import {
+  customFields,
+  expressCrudProps,
+  expressFunc,
+  sequelizePropOrFunc,
+} from '../types';
 
 export const getFieldValue = async <T = any>(
   field: sequelizePropOrFunc<T>,
@@ -34,4 +39,12 @@ export const buildOptionsFromConfig = async <T extends {[prop: string]: any}>(
     newConfig[key] = await getFieldValue(config[key], req, res);
   }
   return newConfig;
+};
+
+export const runCustomMiddleware = (middleware?: expressFunc) => {
+  return middleware
+    ? middleware
+    : (req: Request, res: Response, next: NextFunction) => {
+        next();
+      };
 };

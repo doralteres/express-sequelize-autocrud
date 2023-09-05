@@ -16,7 +16,11 @@ export type modelType = ModelCtor<Model<any, any>> | string;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type pureModelType = ModelCtor<Model<any, any>>;
 
-type expressFunc = (req: Request, res: Response, next: NextFunction) => void;
+export type expressFunc = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => void;
 
 export type sequelizeFunc<T> = (req: Request, res: Response) => Promise<T>;
 
@@ -64,7 +68,7 @@ export interface getOneOptions
   extends operationFieldCore,
     expressCrudProps<Omit<NonNullFindOptions<unknown>, 'where'>> {}
 
-interface createOptions
+export interface createOptions
   extends operationFieldCore,
     expressCrudProps<CreateOptions<unknown>> {
   creatableFields?: customFields;

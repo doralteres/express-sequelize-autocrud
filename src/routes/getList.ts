@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
 import {getListOptions, pureModelType} from '../types';
-import {buildOptionsFromConfig} from '../middleware/config';
+import {
+  buildOptionsFromConfig,
+  runCustomMiddleware,
+} from '../middleware/config';
 import {
   buildOptionsFromQueryParams,
   checkFilterableFields,
@@ -15,6 +18,7 @@ const getListRoute = (
 ) =>
   router.get(
     '/',
+    runCustomMiddleware(config.middleware),
     checkFilterableFields(config.filterableFields),
     checkSortableFields(config.sortableFields),
     async (req, res) => {
