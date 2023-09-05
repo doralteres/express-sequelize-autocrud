@@ -1,33 +1,17 @@
-console.log('Try npm run lint/fix!');
+import {Sequelize} from 'sequelize';
+import {Router} from 'express';
+import {sequelizeCrudConfig} from './types';
+import {getPath} from './utils';
+import buildModelRoutes from './routes';
 
-const longString =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut aliquet diam.';
-
-const trailing = 'Semicolon';
-
-const why = {am: 'I tabbed?'};
-
-const iWish = "I didn't have a trailing space...";
-
-const sicilian = true;
-
-const vizzini = sicilian ? !sicilian : sicilian;
-
-const re = /foo {3}bar/;
-
-export function doSomeStuff(
-  withThis: string,
-  andThat: string,
-  andThose: string[]
-) {
-  //function on one line
-  if (!andThose.length) {
-    return false;
+const sequelizeCrud = (sequelize: Sequelize, config: sequelizeCrudConfig) => {
+  console.group('Building express crud routes:');
+  const router = Router();
+  for (const basePath in config) {
+    const path = getPath(basePath);
+    router.use(path, buildModelRoutes(path, sequelize, config[path]));
   }
-  console.log(withThis);
-  console.log(andThat);
-  console.dir(andThose);
-  console.log(longString, trailing, why, iWish, vizzini, re);
-  return;
-}
-// TODO: more examples
+  console.groupEnd();
+};
+
+export default sequelizeCrud;
