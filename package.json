@@ -1,7 +1,10 @@
 {
   "name": "express-sequelize-crud",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "files": [
+    "dist"
+  ],
   "repository": "git@github.com:doralteres/express-sequelize-crud.git",
   "author": "Dor Alteresku <doralteres@gmail.com>",
   "license": "MIT",
