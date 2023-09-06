@@ -2,7 +2,7 @@ import express from 'express';
 
 import initDB from './db/models';
 import bodyParser from 'body-parser';
-import sequelizeCrud from 'express-sequelize-crud';
+import sequelizeCrud from 'express-sequelize-autocrud';
 import {modelName} from './db/models/users.model';
 
 const app = express();

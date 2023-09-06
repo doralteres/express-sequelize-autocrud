@@ -1,7 +1,8 @@
-# express-sequelize-crud
+# Express Sequelize AutoCRUD
 
-Express Sequelize CRUD is a powerful and developer-friendly TypeScript library designed to simplify the creation of CRUD (Create, Read, Update, Delete) routes for your Sequelize models in an Express.js application. If you're building RESTful APIs with Express and using Sequelize as your ORM, this library will save you significant development time and effort.
+Express Sequelize AutoCRUD is a powerful and developer-friendly TypeScript library designed to simplify the creation of CRUD (Create, Read, Update, Delete) routes for your Sequelize models in an Express.js application. If you're building RESTful APIs with Express and using Sequelize as your ORM, this library will save you significant development time and effort.
 
+[![CI-Main](https://github.com/doralteres/express-sequelize-crud/actions/workflows/release.yaml/badge.svg)](https://github.com/doralteres/express-sequelize-crud/actions/workflows/release.yaml)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -30,29 +31,29 @@ Thank you for your understanding and patience as we work towards making this CLI
 Using npm:
 
 ```bash
-npm i express-sequelize-crud
+npm i express-sequelize-autocrud
 ```
 
 Using yarn:
 
 ```bash
-yarn add express-sequelize-crud
+yarn add express-sequelize-autocrud
 ```
 
 Using pnpm:
 
 ```bash
-pnpm i express-sequelize-crud
+pnpm i express-sequelize-autocrud
 ```
 
 ## Usage
 
-Using Express Sequelize CRUD is straightforward:
+Using Express Sequelize AutoCRUD is straightforward:
 
 ```typescript
 import express from 'express';
 import {Sequelize} from 'sequelize';
-import sequelizeCrud from 'express-sequelize-crud';
+import sequelizeCrud from 'express-sequelize-autocrud';
 
 const app = express();
 const sequelize = new Sequelize('your_db', 'your_user', 'your_password', {
@@ -62,7 +63,7 @@ const sequelize = new Sequelize('your_db', 'your_user', 'your_password', {
 
 // Define your Sequelize models here
 
-// Generate routes using express-sequelize-crud
+// Generate routes using express-sequelize-autocrud
 app.use(
   '/api',
   sequelizeCrud(sequelize, {
@@ -97,7 +98,7 @@ app.listen(port, () => {
 
 ## Documentation
 
-For detailed usage instructions, examples, and customization options, please refer to our [Documentation]().
+For detailed usage instructions, examples, and customization options, please refer to our [Documentation](./DOCUMENTATION.md).
 
 ## Contributing
 

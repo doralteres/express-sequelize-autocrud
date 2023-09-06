@@ -1,6 +1,6 @@
-# express-sequelize-crud-example
+# express-sequelize-autocrud-example
 
-Example of an express web server, sequelize modules & associations declarations with auto routes using `express-sequelize-crud` and migrations generated bt `sequelize-mig-generator`
+Example of an express web server, sequelize modules & associations declarations with auto routes using `express-sequelize-autocrud` and migrations generated bt `sequelize-mig-generator`
 
 ## Getting started
 
