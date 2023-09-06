@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response} from 'express';
 import {
+  Attributes,
   CreateOptions,
   DestroyOptions,
   FindAndCountOptions,
@@ -22,7 +23,7 @@ export type expressFunc = (
   next: NextFunction
 ) => void;
 
-export type sequelizeFunc<T> = (req: Request, res: Response) => Promise<T>;
+export type sequelizeFunc<T> = (req: Request, res: Response) => Promise<T> | T;
 
 export type sequelizePropOrFunc<T> = T extends unknown
   ? T | sequelizeFunc<T>
@@ -66,7 +67,9 @@ export type getListOptions =
 
 export interface getOneOptions
   extends operationFieldCore,
-    expressCrudProps<Omit<NonNullFindOptions<unknown>, 'where'>> {}
+    expressCrudProps<
+      Omit<NonNullFindOptions<Attributes<Model>>, 'where' | 'rejectOnEmpty'>
+    > {}
 
 export interface createOptions
   extends operationFieldCore,

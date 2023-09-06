@@ -9,9 +9,10 @@ const sequelizeCrud = (sequelize: Sequelize, config: sequelizeCrudConfig) => {
   const router = Router();
   for (const basePath in config) {
     const path = getPath(basePath);
-    router.use(path, buildModelRoutes(path, sequelize, config[path]));
+    router.use(path, buildModelRoutes(path, sequelize, config[basePath]));
   }
   console.groupEnd();
+  return router;
 };
 
 export default sequelizeCrud;
