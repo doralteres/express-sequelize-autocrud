@@ -85,6 +85,9 @@ app.use(
             }
           },
         },
+        update: {
+          updatableFields: {exclude: ['id']},
+        },
       },
     },
   })

@@ -77,7 +77,7 @@ export interface createOptions
   creatableFields?: customFields;
 }
 
-interface updateOptions
+export interface updateOptions
   extends operationFieldCore,
     expressCrudProps<Omit<UpdateOptions<unknown>, 'where'>> {
   updatableFields?: customFields;

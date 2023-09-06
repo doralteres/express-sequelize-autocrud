@@ -6,6 +6,7 @@ import {Sequelize} from 'sequelize';
 import getListRoute from './getList';
 import getOneRoute from './getOne';
 import createRoute from './create';
+import updateRoute from './update';
 
 const buildModelRoutes = (
   path: string,
@@ -28,6 +29,10 @@ const buildModelRoutes = (
   if (operations.create) {
     createRoute(model, router, operations.create);
     console.log('POST', path, '[create]');
+  }
+  if (operations.update) {
+    updateRoute(model, router, operations.update);
+    console.log('PUT', `${path}/:resourceId`, '[update]');
   }
 
   console.groupEnd();

@@ -26,6 +26,7 @@ initDB().then(sequelize => {
           getList: {filterableFields: ['id', 'gender'], limit: 100},
           getOne: {attributes: ['id', 'fullName']},
           create: {
+            creatableFields: {exclude: ['id']},
             middleware: (req, res, next) => {
               if (!req.query.auth) {
                 res.status(400).send('auth query is required');
@@ -33,7 +34,9 @@ initDB().then(sequelize => {
                 next();
               }
             },
-            creatableFields: {exclude: ['id']},
+          },
+          update: {
+            updatableFields: {exclude: ['id']},
           },
         },
       },
