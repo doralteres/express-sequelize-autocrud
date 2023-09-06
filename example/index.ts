@@ -27,16 +27,18 @@ initDB().then(sequelize => {
           getOne: {attributes: ['id', 'fullName']},
           create: {
             creatableFields: {exclude: ['id']},
-            middleware: (req, res, next) => {
-              if (!req.query.auth) {
-                res.status(400).send('auth query is required');
-              } else {
-                next();
-              }
-            },
           },
           update: {
             updatableFields: {exclude: ['id']},
+          },
+          delete: {
+            middleware: (req, res, next) => {
+              if (req.query.role === 'admin') {
+                next();
+              } else {
+                res.sendStatus(403);
+              }
+            },
           },
         },
       },

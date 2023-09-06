@@ -83,7 +83,7 @@ export interface updateOptions
   updatableFields?: customFields;
 }
 
-interface deleteOptions
+export interface deleteOptions
   extends operationFieldCore,
     expressCrudProps<Omit<DestroyOptions<unknown>, 'where'>> {}
 

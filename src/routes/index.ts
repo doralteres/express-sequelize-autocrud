@@ -7,6 +7,7 @@ import getListRoute from './getList';
 import getOneRoute from './getOne';
 import createRoute from './create';
 import updateRoute from './update';
+import deleteRoute from './delete';
 
 const buildModelRoutes = (
   path: string,
@@ -34,7 +35,10 @@ const buildModelRoutes = (
     updateRoute(model, router, operations.update);
     console.log('PUT', `${path}/:resourceId`, '[update]');
   }
-
+  if (operations.delete) {
+    deleteRoute(model, router, operations.delete);
+    console.log('DELETE', `${path}/:resourceId`, '[delete]');
+  }
   console.groupEnd();
   return router;
 };

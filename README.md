@@ -77,16 +77,18 @@ app.use(
         getOne: {attributes: ['id', 'fullName']},
         create: {
           creatableFields: {exclude: ['id']},
-          middleware: (req, res, next) => {
-            if (!req.user) {
-              res.status(401).send('You are not looged in');
-            } else {
-              next();
-            }
-          },
         },
         update: {
           updatableFields: {exclude: ['id']},
+        },
+        delete: {
+          middleware: (req, res, next) => {
+            if (req.user.role === 'admin') {
+              next();
+            } else {
+              res.sendStatus(403);
+            }
+          },
         },
       },
     },
