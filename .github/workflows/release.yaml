@@ -42,9 +42,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn release
-      # - run: yarn publish
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: get version
         id: version
         uses: notiz-dev/github-action-json-property@release
