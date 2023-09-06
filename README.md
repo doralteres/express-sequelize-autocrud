@@ -2,13 +2,16 @@
 
 Express Sequelize AutoCRUD is a powerful and developer-friendly TypeScript library designed to simplify the creation of CRUD (Create, Read, Update, Delete) routes for your Sequelize models in an Express.js application. If you're building RESTful APIs with Express and using Sequelize as your ORM, this library will save you significant development time and effort.
 
+![npm](https://img.shields.io/npm/v/express-sequelize-autocrud)
+![NPM](https://img.shields.io/npm/l/express-sequelize-autocrud)
+![GitHub issues](https://img.shields.io/github/issues/doralteres/express-sequelize-autocrud)
 [![CI-Main](https://github.com/doralteres/express-sequelize-crud/actions/workflows/release.yaml/badge.svg)](https://github.com/doralteres/express-sequelize-crud/actions/workflows/release.yaml)
 [![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ### ⚠️ Disclaimer: Development Mode ⚠️
 
-**Please note that the Sequelize Migration Generator CLI is currently in development mode and should not be used in a production environment.**
+**Please note that the Express Sequelize AutoCRUD is currently in development mode and should not be used in a production environment.**
 
 This tool is actively being developed and may undergo significant changes, including features, code structure, and APIs. While we encourage you to explore and test it, we strongly advise against using it in a production setting at this time.
 
