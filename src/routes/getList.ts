@@ -3,6 +3,7 @@ import {Router} from 'express';
 import {getListOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
+  getFieldValue,
   runCustomMiddleware,
 } from '../middleware/config';
 import {
@@ -10,6 +11,8 @@ import {
   checkFilterableFields,
   checkSortableFields,
 } from '../middleware/query';
+import {SequelizeScopeError} from 'sequelize';
+import {getSequelizeErrorMessage} from '../utils';
 
 const getListRoute = (
   model: pureModelType,
@@ -35,7 +38,19 @@ const getListRoute = (
           req,
           res
         );
-        const queryOptions = buildOptionsFromQueryParams(req.query);
+        const queryOptions = buildOptionsFromQueryParams(
+          req.query,
+          await getFieldValue(config.limit, req, res)
+        );
+        console.log({
+          queryOptions,
+          total: {
+            ...options,
+            ...queryOptions,
+            where: {...options.where, ...queryOptions.where},
+          },
+        });
+
         if (pagination) {
           const {rows, count} = await model.findAndCountAll({
             ...options,
@@ -54,7 +69,7 @@ const getListRoute = (
         }
       } catch (error) {
         console.error(error);
-        res.status(500).send(error);
+        res.status(500).json(getSequelizeErrorMessage(error));
       }
     }
   );

@@ -6,6 +6,7 @@ import {
   runCustomMiddleware,
 } from '../middleware/config';
 import {checkBodyFields} from '../middleware/body';
+import {getSequelizeErrorMessage} from '../utils';
 
 const createRoute = (
   model: pureModelType,
@@ -25,13 +26,13 @@ const createRoute = (
           res
         );
 
-        const data = await model.findByPk(req.params.resourceId, {
+        const data = await model.create(req.body, {
           ...options,
         });
-        res.json(data);
+        res.status(201).json(data);
       } catch (error) {
         console.error(error);
-        res.status(500).send(error);
+        res.status(500).json(getSequelizeErrorMessage(error));
       }
     }
   );

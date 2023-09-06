@@ -14,19 +14,20 @@ const buildModelRoutes = (
 ) => {
   const router = Router();
   const {model: m, operations} = config;
+
   const model = getModel(sequelize, m);
   console.group(`Model [${model.name}]`);
   if (operations.getList) {
     getListRoute(model, router, operations.getList);
-    console.log('GET', `/${path}`, '[getList]');
-  }
-  if (operations.create) {
-    createRoute(model, router, operations.create);
-    console.log('POST', `/${path}`, '[create]');
+    console.log('GET', path, '[getList]');
   }
   if (operations.getOne) {
     getOneRoute(model, router, operations.getOne);
-    console.log('GET', `/${path}/:resourceId`, '[getOne]');
+    console.log('GET', `${path}/:resourceId`, '[getOne]');
+  }
+  if (operations.create) {
+    createRoute(model, router, operations.create);
+    console.log('POST', path, '[create]');
   }
 
   console.groupEnd();

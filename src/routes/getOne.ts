@@ -4,6 +4,7 @@ import {
   buildOptionsFromConfig,
   runCustomMiddleware,
 } from '../middleware/config';
+import {getSequelizeErrorMessage} from '../utils';
 
 const getOneRoute = (
   model: pureModelType,
@@ -26,10 +27,14 @@ const getOneRoute = (
         const data = await model.findByPk(req.params.resourceId, {
           ...options,
         });
-        res.json(data);
+        if (data) {
+          res.json(data);
+        } else {
+          res.sendStatus(404);
+        }
       } catch (error) {
         console.error(error);
-        res.status(500).send(error);
+        res.status(500).json(getSequelizeErrorMessage(error));
       }
     }
   );
