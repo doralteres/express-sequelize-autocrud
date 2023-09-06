@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.4...v0.0.5) (2023-09-06)
+
+
+### Features
+
+* :sparkles: add delete route ([8f5beb4](https://github.com/doralteres/express-sequelize-autocrud/commit/8f5beb4cb06f0630e9d767b08c40b3b4910877fa))
+* :sparkles: add Update route ([7b162ec](https://github.com/doralteres/express-sequelize-autocrud/commit/7b162ecb0334496cecc02c3ee54fccab00f1ecc0))
+
 ### [0.0.4](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.3...v0.0.4) (2023-09-06)
 
 
