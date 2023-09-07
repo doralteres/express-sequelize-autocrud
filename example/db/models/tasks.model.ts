@@ -3,7 +3,7 @@ import {modelName as users} from './users.model';
 
 export const modelName = 'tasks';
 
-const Users = (sequelize: Sequelize) => {
+const Tasks = (sequelize: Sequelize) => {
   return sequelize.define(modelName, {
     id: {
       type: DataTypes.INTEGER,
@@ -29,4 +29,4 @@ const Users = (sequelize: Sequelize) => {
   });
 };
 
-export default Users;
+export default Tasks;

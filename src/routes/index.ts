@@ -28,15 +28,15 @@ const buildModelRoutes = (
     console.log('GET', `${path}/:resourceId`, '[getOne]');
   }
   if (operations.create) {
-    createRoute(model, router, operations.create);
+    createRoute(sequelize, model, router, operations.create);
     console.log('POST', path, '[create]');
   }
   if (operations.update) {
-    updateRoute(model, router, operations.update);
+    updateRoute(sequelize, model, router, operations.update);
     console.log('PUT', `${path}/:resourceId`, '[update]');
   }
   if (operations.delete) {
-    deleteRoute(model, router, operations.delete);
+    deleteRoute(sequelize, model, router, operations.delete);
     console.log('DELETE', `${path}/:resourceId`, '[delete]');
   }
   console.groupEnd();

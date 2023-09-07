@@ -1,43 +1,60 @@
 import {Sequelize, DataTypes} from 'sequelize';
+import {modelName as tasks} from './tasks.model';
 
 export const modelName = 'users';
 
 const Users = (sequelize: Sequelize) => {
-  return sequelize.define(modelName, {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
-    fullName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        max: 20,
+  return sequelize.define(
+    modelName,
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+      },
+      fullName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          max: 20,
+        },
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          isEmail: true,
+        },
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+      },
+      gender: {
+        type: DataTypes.STRING,
+        validate: {
+          isIn: [['male', 'female', 'n/a']],
+        },
+      },
+      locale: {
+        type: DataTypes.STRING,
       },
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
+    {
+      hooks: {
+        afterCreate: async (attributes, options) => {
+          await sequelize.model(tasks).create(
+            {
+              description: 'First Task',
+              userId: attributes.getDataValue('id'),
+            },
+            {transaction: options.transaction}
+          );
+        },
       },
-    },
-    phoneNumber: {
-      type: DataTypes.STRING,
-    },
-    gender: {
-      type: DataTypes.STRING,
-      validate: {
-        isIn: [['male', 'female', 'n/a']],
-      },
-    },
-    locale: {
-      type: DataTypes.STRING,
-    },
-  });
+    }
+  );
 };
 
 export default Users;

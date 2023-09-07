@@ -7,8 +7,10 @@ import {
 } from '../middleware/config';
 import {checkBodyFields} from '../middleware/body';
 import {getSequelizeErrorMessage} from '../utils';
+import {Sequelize} from 'sequelize';
 
 const updateRoute = (
+  sequelize: Sequelize,
   model: pureModelType,
   router: Router,
   config: updateOptions
@@ -25,13 +27,14 @@ const updateRoute = (
           req,
           res
         );
-
-        const data = await model.update(req.body, {
-          ...options,
-          where: {id: req.params.resourceId},
-          returning: true,
+        await sequelize.transaction(async t => {
+          const data = await model.update(req.body, {
+            ...options,
+            where: {id: req.params.resourceId},
+            returning: true,
+          });
+          res.status(201).json({affectedCount: data[0], affectedRows: data[1]});
         });
-        res.status(201).json({affectedCount: data[0], affectedRows: data[1]});
       } catch (error) {
         console.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));

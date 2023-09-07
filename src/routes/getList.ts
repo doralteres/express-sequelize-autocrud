@@ -42,14 +42,6 @@ const getListRoute = (
           req.query,
           await getFieldValue(config.limit, req, res)
         );
-        console.log({
-          queryOptions,
-          total: {
-            ...options,
-            ...queryOptions,
-            where: {...options.where, ...queryOptions.where},
-          },
-        });
 
         if (pagination) {
           const {rows, count} = await model.findAndCountAll({

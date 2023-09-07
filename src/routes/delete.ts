@@ -6,8 +6,10 @@ import {
   runCustomMiddleware,
 } from '../middleware/config';
 import {getSequelizeErrorMessage} from '../utils';
+import {Sequelize} from 'sequelize';
 
 const deleteRoute = (
+  sequelize: Sequelize,
   model: pureModelType,
   router: Router,
   config: deleteOptions
@@ -23,12 +25,14 @@ const deleteRoute = (
           req,
           res
         );
-
-        const data = await model.destroy({
-          ...options,
-          where: {id: req.params.resourceId},
+        await sequelize.transaction(async t => {
+          const data = await model.destroy({
+            ...options,
+            where: {id: req.params.resourceId},
+            transaction: t,
+          });
+          res.status(201).json({affectedCount: data});
         });
-        res.status(201).json({affectedCount: data});
       } catch (error) {
         console.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));

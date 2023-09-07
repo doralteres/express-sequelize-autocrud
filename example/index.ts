@@ -3,7 +3,8 @@ import express from 'express';
 import initDB from './db/models';
 import bodyParser from 'body-parser';
 import sequelizeCrud from 'express-sequelize-autocrud';
-import {modelName} from './db/models/users.model';
+import {modelName as users} from './db/models/users.model';
+import {modelName as tasks} from './db/models/tasks.model';
 
 const app = express();
 
@@ -21,7 +22,7 @@ initDB().then(sequelize => {
     '/api',
     sequelizeCrud(sequelize, {
       users: {
-        model: modelName,
+        model: users,
         operations: {
           getList: {filterableFields: ['id', 'gender'], limit: 100},
           getOne: {attributes: ['id', 'fullName']},
@@ -41,6 +42,10 @@ initDB().then(sequelize => {
             },
           },
         },
+      },
+      tasks: {
+        model: tasks,
+        operations: {getList: {filterableFields: {exclude: []}}},
       },
     })
   );

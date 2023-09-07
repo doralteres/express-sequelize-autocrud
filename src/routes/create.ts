@@ -7,8 +7,10 @@ import {
 } from '../middleware/config';
 import {checkBodyFields} from '../middleware/body';
 import {getSequelizeErrorMessage} from '../utils';
+import {Sequelize} from 'sequelize';
 
 const createRoute = (
+  sequelize: Sequelize,
   model: pureModelType,
   router: Router,
   config: createOptions
@@ -25,11 +27,13 @@ const createRoute = (
           req,
           res
         );
-
-        const data = await model.create(req.body, {
-          ...options,
+        await sequelize.transaction(async t => {
+          const data = await model.create(req.body, {
+            ...options,
+            transaction: t,
+          });
+          res.status(201).json(data);
         });
-        res.status(201).json(data);
       } catch (error) {
         console.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));

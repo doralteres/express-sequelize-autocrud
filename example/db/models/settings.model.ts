@@ -2,7 +2,7 @@ import {Sequelize, DataTypes} from 'sequelize';
 
 export const modelName = 'settings';
 
-const Users = (sequelize: Sequelize) => {
+const Settings = (sequelize: Sequelize) => {
   return sequelize.define(modelName, {
     id: {
       type: DataTypes.INTEGER,
@@ -26,4 +26,4 @@ const Users = (sequelize: Sequelize) => {
   });
 };
 
-export default Users;
+export default Settings;
