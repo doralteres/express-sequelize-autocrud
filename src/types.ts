@@ -73,19 +73,19 @@ export interface getOneOptions
 
 export interface createOptions
   extends operationFieldCore,
-    expressCrudProps<CreateOptions<unknown>> {
+    expressCrudProps<Omit<CreateOptions<unknown>, 'transaction'>> {
   creatableFields?: customFields;
 }
 
 export interface updateOptions
   extends operationFieldCore,
-    expressCrudProps<Omit<UpdateOptions<unknown>, 'where'>> {
+    expressCrudProps<Omit<UpdateOptions<unknown>, 'where' | 'transaction'>> {
   updatableFields?: customFields;
 }
 
 export interface deleteOptions
   extends operationFieldCore,
-    expressCrudProps<Omit<DestroyOptions<unknown>, 'where'>> {}
+    expressCrudProps<Omit<DestroyOptions<unknown>, 'where' | 'transaction'>> {}
 
 type operationsType = {
   getList?: getListOptions;
