@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.6...v0.0.7) (2023-09-07)
+
+
+### Bug Fixes
+
+* :bug: export all types in root module ([dd88046](https://github.com/doralteres/express-sequelize-autocrud/commit/dd880467f7ef6b8f286084596e9f6f10a082582b))
+* :bug: fix transaction override issue (ts) ([bcbb88d](https://github.com/doralteres/express-sequelize-autocrud/commit/bcbb88dea71a14866537607222cb6720c256ac2d))
+
 ### [0.0.6](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.5...v0.0.6) (2023-09-07)
 
 
