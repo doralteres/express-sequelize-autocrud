@@ -1,8 +1,8 @@
 import {Sequelize} from 'sequelize';
 import {Router} from 'express';
-import {sequelizeCrudConfig} from './types';
 import {getPath} from './utils';
 import buildModelRoutes from './routes';
+import {sequelizeCrudConfig} from './types';
 
 const sequelizeCrud = (sequelize: Sequelize, config: sequelizeCrudConfig) => {
   console.group('Building express crud routes:');
@@ -16,3 +16,4 @@ const sequelizeCrud = (sequelize: Sequelize, config: sequelizeCrudConfig) => {
 };
 
 export default sequelizeCrud;
+export * from './types';
