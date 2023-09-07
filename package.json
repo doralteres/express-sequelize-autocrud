@@ -5,8 +5,17 @@
   "files": [
     "dist"
   ],
-  "repository": "git@github.com:doralteres/express-sequelize-autocrud.git",
-  "author": "Dor Alteresku <doralteres@gmail.com>",
+  "author": {
+    "name": "Dor Alteresku",
+    "url": "https://github.com/doralteres"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/doralteres/express-sequelize-autocrud.git"
+  },
+  "bugs": {
+    "url": "https://github.com/doralteres/express-sequelize-autocrud/issues"
+  },
   "description": "Express Sequelize AutoCRUD: Simplify API development with automatic CRUD routes for Sequelize models in Express.js.",
   "license": "MIT",
   "devDependencies": {
