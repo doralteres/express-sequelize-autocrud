@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.7...v0.0.8) (2023-09-08)
+
+
+### Features
+
+* :sparkles: add content-range header on getList routes ([6805c8f](https://github.com/doralteres/express-sequelize-autocrud/commit/6805c8f279df248e11f387d8c9ea9e8f18c93ea0))
+
 ### [0.0.7](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.6...v0.0.7) (2023-09-07)
 
 
