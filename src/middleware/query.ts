@@ -70,3 +70,15 @@ export const checkSortableFields = (sortableFields: customFields = []) => {
     }
   };
 };
+
+export const setContentRange = (
+  res: Response,
+  key: string,
+  offset: number,
+  length: number,
+  total: number
+) => {
+  const range =
+    length === 0 ? '0-0/0' : `${offset}-${offset + length}/${total}`;
+  res.setHeader('Content-Range', `${key} ${range}`);
+};

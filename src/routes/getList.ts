@@ -10,8 +10,8 @@ import {
   buildOptionsFromQueryParams,
   checkFilterableFields,
   checkSortableFields,
+  setContentRange,
 } from '../middleware/query';
-import {SequelizeScopeError} from 'sequelize';
 import {getSequelizeErrorMessage} from '../utils';
 
 const getListRoute = (
@@ -49,8 +49,14 @@ const getListRoute = (
             ...queryOptions,
             where: {...options.where, ...queryOptions.where},
           });
-          // TODO: set PAGINATION
-          res.json({rows, count});
+          setContentRange(
+            res,
+            model.name,
+            queryOptions.offset || 0,
+            rows.length,
+            count
+          );
+          res.json(rows);
         } else {
           const data = await model.findAll({
             ...options,

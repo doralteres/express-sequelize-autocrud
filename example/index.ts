@@ -24,7 +24,11 @@ initDB().then(sequelize => {
       users: {
         model: users,
         operations: {
-          getList: {filterableFields: ['id', 'gender'], limit: 100},
+          getList: {
+            pagination: true,
+            filterableFields: ['id', 'gender'],
+            limit: 100,
+          },
           getOne: {attributes: ['id', 'fullName']},
           create: {
             creatableFields: {exclude: ['id']},
