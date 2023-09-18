@@ -8,6 +8,7 @@ import {
 import {checkBodyFields} from '../middleware/body';
 import {getSequelizeErrorMessage} from '../utils';
 import {Sequelize} from 'sequelize';
+import {DEFAULT_CREATABLE_FIELDS} from '../config';
 
 const createRoute = (
   sequelize: Sequelize,
@@ -18,7 +19,7 @@ const createRoute = (
   router.post(
     '/',
     runCustomMiddleware(config.middleware),
-    checkBodyFields(config.creatableFields),
+    checkBodyFields(config.creatableFields || DEFAULT_CREATABLE_FIELDS),
     async (req, res) => {
       const {middleware, creatableFields, ...sequelizeOptions} = config;
       try {

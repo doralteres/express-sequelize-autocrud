@@ -8,6 +8,7 @@ import {
 import {checkBodyFields} from '../middleware/body';
 import {getSequelizeErrorMessage} from '../utils';
 import {Sequelize} from 'sequelize';
+import {DEFAULT_UPDATABLE_FIELDS} from '../config';
 
 const updateRoute = (
   sequelize: Sequelize,
@@ -18,7 +19,7 @@ const updateRoute = (
   router.put(
     '/:resourceId',
     runCustomMiddleware(config.middleware),
-    checkBodyFields(config.updatableFields),
+    checkBodyFields(config.updatableFields || DEFAULT_UPDATABLE_FIELDS),
     async (req, res) => {
       const {middleware, updatableFields, ...sequelizeOptions} = config;
       try {

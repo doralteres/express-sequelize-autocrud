@@ -4,6 +4,10 @@ import {customFields} from '../types';
 import {NextFunction, Request, Response} from 'express';
 import {isIncludeExcludeMatchCriteria} from './config';
 import {crudError} from '../utils';
+import {
+  GET_LIST_DEFAULT_FILTERABLE_FIELDS,
+  GET_LIST_DEFAULT_SORTABLE_FIELDS,
+} from '../config';
 
 export const buildOptionsFromQueryParams = (
   q: Record<string, any>,
@@ -24,7 +28,9 @@ export const buildOptionsFromQueryParams = (
   };
 };
 
-export const checkFilterableFields = (filterableFields: customFields = []) => {
+export const checkFilterableFields = (
+  filterableFields: customFields = GET_LIST_DEFAULT_FILTERABLE_FIELDS
+) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const {_sort, _order, _start, _end, ...where} = req.query;
@@ -50,7 +56,9 @@ export const checkFilterableFields = (filterableFields: customFields = []) => {
   };
 };
 
-export const checkSortableFields = (sortableFields: customFields = []) => {
+export const checkSortableFields = (
+  sortableFields: customFields = GET_LIST_DEFAULT_SORTABLE_FIELDS
+) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const {_sort} = req.query;
     if (

@@ -3,7 +3,7 @@ import {customFields} from '../types';
 import {isIncludeExcludeMatchCriteria} from './config';
 import {crudError} from '../utils';
 
-export const checkBodyFields = (bodyFields: customFields = []) => {
+export const checkBodyFields = (bodyFields: customFields) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const toTest = Object.keys(req.body);
     const {result, problematicFields} = await isIncludeExcludeMatchCriteria(
