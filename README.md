@@ -27,7 +27,18 @@ Thank you for your understanding and patience as we work towards making this CLI
 - **Customizable Routes:** Configure routes according to your project's specific requirements.
 - **Validation and Error Handling:** Built-in request validation and error handling for seamless API development.
 - **Middleware Support:** Integrate custom middleware functions with generated routes to extend functionality.
+- **Transaction Support:** Create, Update and Delete routes runs inside [sequelize transaction](https://sequelize.org/docs/v6/other-topics/transactions/) to handle pre/post hooks and rollback automatically in case something failed in the process.
 - **Secure and Efficient:** Utilizes Sequelize's robust security features and optimized database queries.
+
+## CRUD Routes
+
+| Operation   | URL                                                                                                                                                                                                                       | Sequelize Operation                      | Comment                                                                                                                                                                                                                                                                                                 |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **getList** | Clean:<br>_GET_ `<API_URL>/<BASE_PATH>`<br><br>With pagination:<br>_GET_ `<API_URL>/<BASE_PATH>?_start=30&_end=60`<br><br>With sort & filters:<br>_GET_ `<API_URL>/<BASE_PATH>?_sort=createdAt&_order=DESC&gender=female` | `findAll()`<br>or<br>`findAndCountAll()` | - Enable pagination with `pagination: true` in the config.<br>- Pagination automatically adds `Content-Range` header.<br>- Can control which fields can be filterable using `filterableFields` in the config.<br>- Can control which fields can be sortable using `sortableFieldsFields` in the config. |
+| **getOne**  | _GET_ `<API_URL>/<BASE_PATH>/:resourceId`                                                                                                                                                                                 | `findByPk()`                             |                                                                                                                                                                                                                                                                                                         |
+| **create**  | _POST_ `<API_URL>/<BASE_PATH>`                                                                                                                                                                                            | `create()`                               | - Can control which fields can be added to body request using `creatableFields` in the config.                                                                                                                                                                                                          |
+| **update**  | _PUT_ `<API_URL>/<BASE_PATH>/:resourceId`                                                                                                                                                                                 | `update()`                               | - Can control which fields can be added to body request using `updatableFields` in the config.                                                                                                                                                                                                          |
+| **delete**  | _DELETE_ `<API_URL>/<BASE_PATH>/:resourceId`                                                                                                                                                                              | `destroy()`                              |                                                                                                                                                                                                                                                                                                         |
 
 ## Installation
 
@@ -73,8 +84,17 @@ app.use(
     '/users': {
       model: sequelize.model('users'),
       operations: {
-        getList: {filterableFields: ['id', 'gender'], limit: 100},
-        getOne: {attributes: ['id', 'fullName']},
+        getList: {
+          filterableFields: ['id', 'gender'],
+          attributes: ['id', 'fullName', 'gender'],
+          limit: 100,
+        },
+        getOne: {
+          attributes: req =>
+            req.user.role === 'admin'
+              ? ['id', 'fullName', 'secretStuf']
+              : ['id', 'fullName'],
+        },
         create: {
           creatableFields: {exclude: ['id']},
         },
