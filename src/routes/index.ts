@@ -39,6 +39,10 @@ const buildModelRoutes = (
     deleteRoute(sequelize, model, router, operations.delete);
     console.log('DELETE', `${path}/:resourceId`, '[delete]');
   }
+  if (operations.custom) {
+    console.warn('WARNNING', 'Custom Routes enabled on', path);
+    operations.custom(router);
+  }
   console.groupEnd();
   return router;
 };

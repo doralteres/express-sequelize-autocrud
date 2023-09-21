@@ -49,7 +49,14 @@ initDB().then(sequelize => {
       },
       tasks: {
         model: tasks,
-        operations: {getList: {filterableFields: {exclude: []}}},
+        operations: {
+          getList: {filterableFields: {exclude: []}},
+          custom: router => {
+            router.get('/stats', (req, res) => {
+              res.send('Custom stats Route!');
+            });
+          },
+        },
       },
     })
   );

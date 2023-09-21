@@ -81,6 +81,7 @@ export type sequelizeCrudConfig = {
       create?: createOptions;
       update?: updateOptions;
       delete?: deleteOptions;
+      custom?: customRoutesFunc;
     };
   };
 };
@@ -242,6 +243,33 @@ const routes = sequelizeCrud(sequelize, {
   },
 });
 ```
+
+## Custom routes
+
+We've added an option to set custom routes to CRUD routes in case you want to extends the options the module provided.
+
+exapmle:
+
+```typescript
+const routes = sequelizeCrud(sequelize, {
+  '/tasks': {
+    model: sequelize.model('tasts'),
+    operations: {
+      getList: {filterableFields: {exclude: []}},
+      custom: router => {
+        // Add your custom routes here
+        router.get('/stats', (req, res) => {
+          res.send('Custom stats Route!');
+        });
+      },
+    },
+  },
+});
+```
+
+In that example GET `<BASE_URL>/tasks/stats` will return `'Custom stats Route!'` message.
+
+> ⚠️ Warnnings <br /> - All CRUD fetures does not support custom routes (middleware, crudFunctions etc.) you build your own routes from scratch!<br />- Use custom route with **different paths** so CRUD routes will not be overriden.
 
 ## transactions
 

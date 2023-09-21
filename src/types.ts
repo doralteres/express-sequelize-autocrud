@@ -1,4 +1,4 @@
-import {NextFunction, Request, Response} from 'express';
+import {NextFunction, Request, Response, Router} from 'express';
 import {
   Attributes,
   CreateOptions,
@@ -87,12 +87,15 @@ export interface deleteOptions
   extends operationFieldCore,
     expressCrudProps<Omit<DestroyOptions<unknown>, 'where' | 'transaction'>> {}
 
+type customRoutesFunc = (router: Router) => void;
+
 type operationsType = {
   getList?: getListOptions;
   getOne?: getOneOptions;
   create?: createOptions;
   update?: updateOptions;
   delete?: deleteOptions;
+  custom?: customRoutesFunc;
 };
 
 export type sequelizeCrudConfigModel = {
