@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.9...v0.0.10) (2023-09-21)
+
+
+### Features
+
+* :sparkles: add custom routes feature ([073a25b](https://github.com/doralteres/express-sequelize-autocrud/commit/073a25bc71b26db06ca0a59733ab5865d72519e0))
+
 ### [0.0.9](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.8...v0.0.9) (2023-09-18)
 
 
