@@ -28,6 +28,7 @@ initDB().then(sequelize => {
             pagination: true,
             filterableFields: ['id', 'gender'],
             limit: 100,
+            order: [['createdAt', 'DESC']],
           },
           getOne: {attributes: ['id', 'fullName']},
           create: {

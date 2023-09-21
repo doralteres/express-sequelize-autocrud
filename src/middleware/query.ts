@@ -11,20 +11,18 @@ import {
 
 export const buildOptionsFromQueryParams = (
   q: Record<string, any>,
-  maxLimit?: number
+  options: FindAndCountOptions
 ): FindAndCountOptions<unknown> => {
   const {_sort, _order, _start, _end, ...where} = q;
+  const {limit, order} = options;
   const queryLimit = _end
     ? parseInt(_end) - (parseInt(_start) || 0)
     : undefined;
   return {
     where,
-    limit:
-      queryLimit && (!maxLimit || maxLimit >= queryLimit)
-        ? queryLimit
-        : maxLimit,
+    limit: queryLimit && (!limit || limit >= queryLimit) ? queryLimit : limit,
     offset: parseInt(_start) || 0,
-    order: _sort ? [[_sort, _order || 'DESC']] : undefined,
+    order: _sort ? [[_sort, _order || 'DESC']] : order,
   };
 };
 
