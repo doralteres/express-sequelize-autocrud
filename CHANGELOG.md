@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.10...v0.0.11) (2023-09-21)
+
+
+### Bug Fixes
+
+* :bug: undefine issue in query params ([d04e6af](https://github.com/doralteres/express-sequelize-autocrud/commit/d04e6af597881d4b35496738739cc0f2e12f1419))
+
 ### [0.0.10](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.9...v0.0.10) (2023-09-21)
 
 
