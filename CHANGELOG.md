@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.12...v0.0.13) (2023-10-11)
+
+
+### Bug Fixes
+
+* :bug: transaction issue in update route ([07d9529](https://github.com/doralteres/express-sequelize-autocrud/commit/07d9529c7feb9f88dd19fe4a8ee228b259c346f2))
+
 ### [0.0.12](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.11...v0.0.12) (2023-10-08)
 
 ### [0.0.11](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.10...v0.0.11) (2023-09-21)
