@@ -33,6 +33,7 @@ const updateRoute = (
             ...options,
             where: {id: req.params.resourceId},
             returning: true,
+            transaction: t,
           });
           res.status(201).json({affectedCount: data[0], affectedRows: data[1]});
         });
