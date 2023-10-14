@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.14](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.13...v0.0.14) (2023-10-14)
+
+
+### Features
+
+* :lipstick: add custom loggger option ([cbd4dfe](https://github.com/doralteres/express-sequelize-autocrud/commit/cbd4dfe7ecea43c18919f924b82cf0aaa1b5b26a))
+
 ### [0.0.13](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.12...v0.0.13) (2023-10-11)
 
 
