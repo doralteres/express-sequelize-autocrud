@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {getListOptions, pureModelType} from '../types';
+import {LoggerOptions, getListOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
-  getFieldValue,
   runCustomMiddleware,
 } from '../middleware/config';
 import {
@@ -17,7 +16,8 @@ import {getSequelizeErrorMessage} from '../utils';
 const getListRoute = (
   model: pureModelType,
   router: Router,
-  config: getListOptions
+  config: getListOptions,
+  logger: LoggerOptions
 ) =>
   router.get(
     '/',
@@ -62,7 +62,7 @@ const getListRoute = (
           res.json(data);
         }
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));
       }
     }

@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {getOneOptions, pureModelType} from '../types';
+import {LoggerOptions, getOneOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
@@ -9,7 +9,8 @@ import {getSequelizeErrorMessage} from '../utils';
 const getOneRoute = (
   model: pureModelType,
   router: Router,
-  config: getOneOptions
+  config: getOneOptions,
+  logger: LoggerOptions
 ) =>
   router.get(
     '/:resourceId',
@@ -33,7 +34,7 @@ const getOneRoute = (
           res.sendStatus(404);
         }
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));
       }
     }

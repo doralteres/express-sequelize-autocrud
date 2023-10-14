@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {createOptions, pureModelType} from '../types';
+import {LoggerOptions, createOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
@@ -14,7 +14,8 @@ const createRoute = (
   sequelize: Sequelize,
   model: pureModelType,
   router: Router,
-  config: createOptions
+  config: createOptions,
+  logger: LoggerOptions
 ) =>
   router.post(
     '/',
@@ -36,7 +37,7 @@ const createRoute = (
           res.status(201).json(data);
         });
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));
       }
     }

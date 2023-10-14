@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {updateOptions, pureModelType} from '../types';
+import {updateOptions, pureModelType, LoggerOptions} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
@@ -14,7 +14,8 @@ const updateRoute = (
   sequelize: Sequelize,
   model: pureModelType,
   router: Router,
-  config: updateOptions
+  config: updateOptions,
+  logger: LoggerOptions
 ) =>
   router.put(
     '/:resourceId',
@@ -38,7 +39,7 @@ const updateRoute = (
           res.status(201).json({affectedCount: data[0], affectedRows: data[1]});
         });
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));
       }
     }

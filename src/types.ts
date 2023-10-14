@@ -106,3 +106,15 @@ export type sequelizeCrudConfigModel = {
 export type sequelizeCrudConfig = {
   [basepath: string]: sequelizeCrudConfigModel;
 };
+
+type logFunc = (msg: unknown) => void;
+
+export type LoggerOptions = {
+  info: logFunc;
+  warn: logFunc;
+  error: logFunc;
+};
+
+export type sequelizeCrudOptions = {
+  logging?: LoggerOptions;
+};

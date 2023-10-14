@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import {sequelizeCrudConfigModel} from '../types';
+import {LoggerOptions, sequelizeCrudConfigModel} from '../types';
 import {getModel} from '../utils';
 import {Sequelize} from 'sequelize';
 
@@ -12,38 +12,38 @@ import deleteRoute from './delete';
 const buildModelRoutes = (
   path: string,
   sequelize: Sequelize,
-  config: sequelizeCrudConfigModel
+  config: sequelizeCrudConfigModel,
+  logger: LoggerOptions
 ) => {
   const router = Router();
   const {model: m, operations} = config;
 
   const model = getModel(sequelize, m);
-  console.group(`Model [${model.name}]`);
+  logger.info(`Building Model [${model.name}]`);
   if (operations.getList) {
-    getListRoute(model, router, operations.getList);
-    console.log('GET', path, '[getList]');
+    getListRoute(model, router, operations.getList, logger);
+    logger.info(['GET', path, '[getList]'].join(' '));
   }
   if (operations.getOne) {
-    getOneRoute(model, router, operations.getOne);
-    console.log('GET', `${path}/:resourceId`, '[getOne]');
+    getOneRoute(model, router, operations.getOne, logger);
+    logger.info(['GET', `${path}/:resourceId`, '[getOne]'].join(' '));
   }
   if (operations.create) {
-    createRoute(sequelize, model, router, operations.create);
-    console.log('POST', path, '[create]');
+    createRoute(sequelize, model, router, operations.create, logger);
+    logger.info(['POST', path, '[create]'].join(' '));
   }
   if (operations.update) {
-    updateRoute(sequelize, model, router, operations.update);
-    console.log('PUT', `${path}/:resourceId`, '[update]');
+    updateRoute(sequelize, model, router, operations.update, logger);
+    logger.info(['PUT', `${path}/:resourceId`, '[update]'].join(' '));
   }
   if (operations.delete) {
-    deleteRoute(sequelize, model, router, operations.delete);
-    console.log('DELETE', `${path}/:resourceId`, '[delete]');
+    deleteRoute(sequelize, model, router, operations.delete, logger);
+    logger.info(['DELETE', `${path}/:resourceId`, '[delete]'].join(' '));
   }
   if (operations.custom) {
-    console.warn('WARNNING', 'Custom Routes enabled on', path);
+    logger.warn(['WARNNING', 'Custom Routes enabled on', path].join(' '));
     operations.custom(router);
   }
-  console.groupEnd();
   return router;
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {deleteOptions, pureModelType} from '../types';
+import {LoggerOptions, deleteOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
@@ -12,7 +12,8 @@ const deleteRoute = (
   sequelize: Sequelize,
   model: pureModelType,
   router: Router,
-  config: deleteOptions
+  config: deleteOptions,
+  logger: LoggerOptions
 ) =>
   router.delete(
     '/:resourceId',
@@ -34,7 +35,7 @@ const deleteRoute = (
           res.status(201).json({affectedCount: data});
         });
       } catch (error) {
-        console.error(error);
+        logger.error(error);
         res.status(500).json(getSequelizeErrorMessage(error));
       }
     }

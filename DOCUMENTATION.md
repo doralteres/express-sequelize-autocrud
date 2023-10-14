@@ -329,3 +329,49 @@ const Users = (sequelize: Sequelize) => {
 
 export default Users;
 ```
+
+## Logging
+
+By default, Auto CRUD prints logs using js console library. You can seyour own logger if you want, check out the example bellow:
+
+```typescript
+import express from 'express';
+import sequelizeCrud from 'express-sequelize-autocrud';
+import {createLogger, format, transports} from 'winston';
+import {sequelize} from './db/models';
+
+// Create a Winston logger
+export const logger = createLogger({
+  level: process.env.LOG_LEVEL || 'info',
+  transports: [new transports.Console()],
+  format: format.combine(format.timestamp(), format.json()),
+});
+
+const app = express();
+
+app.use(
+  '/api',
+  sequelizeCrud(
+    sequelize,
+    {
+      '/users': {
+        model: sequelize.model('users'),
+        operations: {
+          getList: {},
+          getOne: {},
+          create: {},
+          update: {},
+          delete: {},
+        },
+      },
+    }, // OPTIONAL: Adding custom logger
+    {
+      logging: {
+        info: msg => logger.info(msg), // Defualt: console.log
+        warn: msg => logger.warn(msg), // Defualt: console.warn
+        error: msg => logger.error(msg), // Defualt: console.error
+      },
+    }
+  )
+);
+```
