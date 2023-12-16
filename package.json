@@ -20,16 +20,16 @@
   "description": "Express Sequelize AutoCRUD: Simplify API development with automatic CRUD routes for Sequelize models in Express.js.",
   "license": "MIT",
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^20.4.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.4",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "gts": "^5.0.0",
-    "prettier": "^3.0.2",
+    "eslint-plugin-prettier": "^5.0.1",
+    "gts": "^5.2.0",
+    "prettier": "^3.1.1",
     "standard-version": "^9.5.0",
-    "ts-node": "^10.9.1",
-    "typescript": "~5.1.6"
+    "ts-node": "^10.9.2",
+    "typescript": "~5.3.3"
   },
   "scripts": {
     "lint": "gts lint",
@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "sequelize": "^6.32.1"
+    "sequelize": "^6.35.2"
   },
   "config": {
     "commitizen": {

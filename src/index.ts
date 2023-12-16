@@ -1,4 +1,4 @@
-import {Sequelize} from 'sequelize';
+import type {Sequelize} from 'sequelize';
 import {Router} from 'express';
 import {getPath} from './utils.js';
 import buildModelRoutes from './routes/index.js';
