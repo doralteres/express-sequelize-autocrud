@@ -1,11 +1,14 @@
 import {existsSync, readdirSync} from 'fs';
 import {basename, join} from 'path';
 import {Sequelize} from 'sequelize';
+import {URL} from 'url';
 
+const __filename = new URL('', import.meta.url).pathname;
+const __dirname = new URL('.', import.meta.url).pathname;
 const associationsFile = 'associations';
 
-const importDefaultFunction = (path: string) => {
-  const imported = require(path);
+const importDefaultFunction = async (path: string) => {
+  const imported = await import(path);
   let init = imported;
   if (typeof imported !== 'function') {
     init = imported.default;
@@ -24,9 +27,7 @@ const initModels = async (sequelize: Sequelize) => {
       model !== basename(__filename) &&
       modelNoExtention !== associationsFile
     ) {
-      const init = await importDefaultFunction(
-        join(__dirname, modelNoExtention)
-      );
+      const init = await importDefaultFunction(join(__dirname, model));
       console.log('Init model', modelNoExtention);
       await init(sequelize);
     }
@@ -35,7 +36,9 @@ const initModels = async (sequelize: Sequelize) => {
     existsSync(join(__dirname, associationsFile + '.js')) ||
     existsSync(join(__dirname, associationsFile + '.ts'))
   ) {
-    const {default: init} = require(join(__dirname, associationsFile));
+    const {default: init} = await import(
+      join(__dirname, associationsFile + '.js')
+    );
     if (!init) {
       console.error(associationsFile, 'does not have a default export');
       return Promise.reject(

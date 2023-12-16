@@ -1,9 +1,9 @@
 import {Sequelize} from 'sequelize';
 import {Router} from 'express';
-import {getPath} from './utils';
-import buildModelRoutes from './routes';
-import {sequelizeCrudConfig, sequelizeCrudOptions} from './types';
-import {defaultLogger} from './config';
+import {getPath} from './utils.js';
+import buildModelRoutes from './routes/index.js';
+import {sequelizeCrudConfig, sequelizeCrudOptions} from './types.js';
+import {defaultLogger} from './config.js';
 
 const sequelizeCrud = (
   sequelize: Sequelize,
@@ -24,4 +24,4 @@ const sequelizeCrud = (
 };
 
 export default sequelizeCrud;
-export * from './types';
+export * from './types.js';

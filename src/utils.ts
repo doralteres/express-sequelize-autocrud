@@ -1,5 +1,5 @@
 import {Sequelize} from 'sequelize';
-import {modelType} from './types';
+import type {modelType} from './types.js';
 
 export const getModel = (sequelize: Sequelize, model: modelType) =>
   typeof model === 'string' ? sequelize.model(model) : model;

@@ -4,6 +4,7 @@
   "description": "Example project for sequelize-mig-generator",
   "main": "index.js",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "body-parser": "^1.20.2",
     "express": "^4.18.2",

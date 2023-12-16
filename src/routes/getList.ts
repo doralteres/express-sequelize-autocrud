@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {LoggerOptions, getListOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
-} from '../middleware/config';
+} from '../middleware/config.js';
 import {
   buildOptionsFromQueryParams,
   checkFilterableFields,
   checkSortableFields,
   setContentRange,
-} from '../middleware/query';
-import {getSequelizeErrorMessage} from '../utils';
+} from '../middleware/query.js';
+import {getSequelizeErrorMessage} from '../utils.js';
+
+import type {LoggerOptions, getListOptions, pureModelType} from '../types.js';
 
 const getListRoute = (
   model: pureModelType,

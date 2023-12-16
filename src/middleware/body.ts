@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from 'express';
-import {customFields} from '../types';
-import {isIncludeExcludeMatchCriteria} from './config';
-import {crudError} from '../utils';
+import {isIncludeExcludeMatchCriteria} from './config.js';
+import {crudError} from '../utils.js';
+import type {customFields} from '../types.js';
 
 export const checkBodyFields = (bodyFields: customFields) => {
   return async (req: Request, res: Response, next: NextFunction) => {

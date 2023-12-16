@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {NextFunction, Request, Response} from 'express';
-import {
+import type {
   customFields,
   expressCrudProps,
   expressFunc,
   sequelizePropOrFunc,
-} from '../types';
+} from '../types.js';
 
 export const getFieldValue = async <T = any>(
   field: sequelizePropOrFunc<T>,

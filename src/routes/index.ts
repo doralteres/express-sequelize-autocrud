@@ -1,13 +1,14 @@
 import {Router} from 'express';
-import {LoggerOptions, sequelizeCrudConfigModel} from '../types';
-import {getModel} from '../utils';
+import {getModel} from '../utils.js';
 import {Sequelize} from 'sequelize';
 
-import getListRoute from './getList';
-import getOneRoute from './getOne';
-import createRoute from './create';
-import updateRoute from './update';
-import deleteRoute from './delete';
+import getListRoute from './getList.js';
+import getOneRoute from './getOne.js';
+import createRoute from './create.js';
+import updateRoute from './update.js';
+import deleteRoute from './delete.js';
+
+import type {LoggerOptions, sequelizeCrudConfigModel} from '../types.js';
 
 const buildModelRoutes = (
   path: string,
