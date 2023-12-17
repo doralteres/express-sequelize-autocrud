@@ -1,4 +1,4 @@
-import {LoggerOptions, customFields} from './types';
+import type {LoggerOptions, customFields} from './types.js';
 
 export const GET_LIST_DEFAULT_FILTERABLE_FIELDS: customFields = [];
 export const GET_LIST_DEFAULT_SORTABLE_FIELDS: customFields = [];

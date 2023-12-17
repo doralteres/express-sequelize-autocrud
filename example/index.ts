@@ -1,10 +1,10 @@
 import express from 'express';
 
-import initDB from './db/models';
+import initDB from './db/models/index.js';
 import bodyParser from 'body-parser';
+import {modelName as users} from './db/models/users.model.js';
+import {modelName as tasks} from './db/models/tasks.model.js';
 import sequelizeCrud from 'express-sequelize-autocrud';
-import {modelName as users} from './db/models/users.model';
-import {modelName as tasks} from './db/models/tasks.model';
 
 const app = express();
 

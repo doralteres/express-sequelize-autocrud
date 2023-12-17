@@ -7,6 +7,9 @@ on:
     paths-ignore:
       - '**.md'
       - '.github/**'
+      - 'example/**'
+      - 'package.json'
+      - 'yarn.lock'
 
 jobs:
   build:
@@ -16,11 +19,12 @@ jobs:
       - run: |
           git config user.name actions
           git config user.email doralteres@gmail.com
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
       - run: yarn
       - run: yarn lint
+      - run: yarn test
 
   publish:
     needs: build
@@ -36,7 +40,7 @@ jobs:
       - run: |
           git config user.name actions
           git config user.email doralteres@gmail.com
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/

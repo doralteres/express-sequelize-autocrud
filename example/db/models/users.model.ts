@@ -1,5 +1,5 @@
 import {Sequelize, DataTypes} from 'sequelize';
-import {modelName as tasks} from './tasks.model';
+import {modelName as tasks} from './tasks.model.js';
 
 export const modelName = 'users';
 

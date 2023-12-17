@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {FindAndCountOptions} from 'sequelize';
-import {customFields} from '../types';
-import {NextFunction, Request, Response} from 'express';
-import {isIncludeExcludeMatchCriteria} from './config';
-import {crudError} from '../utils';
+import type {FindAndCountOptions} from 'sequelize';
+import type {NextFunction, Request, Response} from 'express';
+import {isIncludeExcludeMatchCriteria} from './config.js';
+import {crudError} from '../utils.js';
 import {
   GET_LIST_DEFAULT_FILTERABLE_FIELDS,
   GET_LIST_DEFAULT_SORTABLE_FIELDS,
-} from '../config';
+} from '../config.js';
+import type {customFields} from '../types.js';
 
 export const buildOptionsFromQueryParams = (
   q: Record<string, any>,

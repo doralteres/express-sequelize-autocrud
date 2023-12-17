@@ -132,5 +132,8 @@ dist
 # gts
 dist/
 
+# vitest
+coverage/
+
 # sequelize
 *.sqlite

@@ -1,10 +1,10 @@
 import {Router} from 'express';
-import {LoggerOptions, getOneOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
-} from '../middleware/config';
-import {getSequelizeErrorMessage} from '../utils';
+} from '../middleware/config.js';
+import {getSequelizeErrorMessage} from '../utils.js';
+import type {LoggerOptions, getOneOptions, pureModelType} from '../types.js';
 
 const getOneRoute = (
   model: pureModelType,

@@ -1,5 +1,5 @@
 import {Sequelize} from 'sequelize';
-import {modelType} from './types';
+import type {modelType} from './types.js';
 
 export const getModel = (sequelize: Sequelize, model: modelType) =>
   typeof model === 'string' ? sequelize.model(model) : model;
@@ -7,7 +7,7 @@ export const getModel = (sequelize: Sequelize, model: modelType) =>
 export const getPath = (path: string) =>
   path.startsWith('/') ? path : `/${path}`;
 
-const findVal = (object: unknown, key: string): unknown => {
+export const findVal = (object: unknown, key: string): unknown => {
   if (typeof object === 'object') {
     if (object && key in object) {
       // @ts-expect-error we know 'key' exist at this point.

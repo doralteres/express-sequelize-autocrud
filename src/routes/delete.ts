@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {LoggerOptions, deleteOptions, pureModelType} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
-} from '../middleware/config';
-import {getSequelizeErrorMessage} from '../utils';
+} from '../middleware/config.js';
+import {getSequelizeErrorMessage} from '../utils.js';
 import {Sequelize} from 'sequelize';
+import type {LoggerOptions, deleteOptions, pureModelType} from '../types.js';
 
 const deleteRoute = (
   sequelize: Sequelize,

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {Router} from 'express';
-import {updateOptions, pureModelType, LoggerOptions} from '../types';
 import {
   buildOptionsFromConfig,
   runCustomMiddleware,
-} from '../middleware/config';
-import {checkBodyFields} from '../middleware/body';
-import {getSequelizeErrorMessage} from '../utils';
+} from '../middleware/config.js';
+import {checkBodyFields} from '../middleware/body.js';
+import {getSequelizeErrorMessage} from '../utils.js';
 import {Sequelize} from 'sequelize';
-import {DEFAULT_UPDATABLE_FIELDS} from '../config';
+import {DEFAULT_UPDATABLE_FIELDS} from '../config.js';
+import type {updateOptions, pureModelType, LoggerOptions} from '../types.js';
 
 const updateRoute = (
   sequelize: Sequelize,
