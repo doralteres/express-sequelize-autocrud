@@ -4,6 +4,8 @@
     "lib": ["es2021"],
     "module": "node16",
     "target": "es2021",
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
     "rootDir": ".",
     "outDir": "dist"
   },

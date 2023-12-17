@@ -1,0 +1,27 @@
+name: CI-Main
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      # Required to checkout the code
+      contents: read
+      # Required to put a comment into the pull-request
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.name actions
+          git config user.email doralteres@gmail.com
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - run: yarn
+      - run: yarn lint
+      - run: yarn test --coverage
+      - name: 'Report Coverage'
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2

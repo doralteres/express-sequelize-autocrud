@@ -7,7 +7,7 @@ export const getModel = (sequelize: Sequelize, model: modelType) =>
 export const getPath = (path: string) =>
   path.startsWith('/') ? path : `/${path}`;
 
-const findVal = (object: unknown, key: string): unknown => {
+export const findVal = (object: unknown, key: string): unknown => {
   if (typeof object === 'object') {
     if (object && key in object) {
       // @ts-expect-error we know 'key' exist at this point.

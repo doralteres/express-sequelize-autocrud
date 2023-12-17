@@ -1,5 +1,5 @@
-import {NextFunction, Request, Response, Router} from 'express';
-import {
+import type {NextFunction, Request, Response, Router} from 'express';
+import type {
   Attributes,
   CreateOptions,
   DestroyOptions,

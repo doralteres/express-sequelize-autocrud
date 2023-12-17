@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {FindAndCountOptions} from 'sequelize';
-import {NextFunction, Request, Response} from 'express';
+import type {FindAndCountOptions} from 'sequelize';
+import type {NextFunction, Request, Response} from 'express';
 import {isIncludeExcludeMatchCriteria} from './config.js';
 import {crudError} from '../utils.js';
 import {

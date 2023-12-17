@@ -4,7 +4,7 @@
   "main": "dist/src/index.js",
   "type": "module",
   "files": [
-    "dist"
+    "dist/src"
   ],
   "author": {
     "name": "Dor Alteresku",
@@ -22,25 +22,34 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.4",
+    "@types/supertest": "^2.0.16",
+    "@vitest/coverage-v8": "^1.0.4",
+    "@vitest/ui": "^1.0.4",
+    "body-parser": "^1.20.2",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint-plugin-prettier": "^5.0.1",
     "gts": "^5.2.0",
     "prettier": "^3.1.1",
+    "sqlite3": "^5.1.6",
     "standard-version": "^9.5.0",
+    "supertest": "^6.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "vite": "^5.0.10",
+    "vitest": "^1.0.4"
   },
   "scripts": {
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "npm run compile",
-    "pretest": "npm run compile",
-    "posttest": "npm run lint",
+    "prepare": "yarn compile",
+    "pretest": "yarn compile",
+    "posttest": "yarn lint",
     "commit": "cz",
-    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} :dizzy: [skip ci]'"
+    "release": "standard-version --releaseCommitMessageFormat 'chore(release): {{currentTag}} :dizzy: [skip ci]'",
+    "test": "vitest"
   },
   "dependencies": {
     "express": "^4.18.2",

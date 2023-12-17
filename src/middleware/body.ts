@@ -1,4 +1,4 @@
-import {NextFunction, Request, Response} from 'express';
+import type {NextFunction, Request, Response} from 'express';
 import {isIncludeExcludeMatchCriteria} from './config.js';
 import {crudError} from '../utils.js';
 import type {customFields} from '../types.js';
