@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.14...v0.1.0) (2023-12-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* min node version -> 16, only works on es modules
+
+* :art: move to esm ([76d826b](https://github.com/doralteres/express-sequelize-autocrud/commit/76d826bff447e1873226fec931e1391a9de1803c))
+
 ### [0.0.14](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.13...v0.0.14) (2023-10-14)
 
 

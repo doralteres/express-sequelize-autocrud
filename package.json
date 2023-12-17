@@ -1,6 +1,6 @@
 {
   "name": "express-sequelize-autocrud",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "main": "dist/src/index.js",
   "type": "module",
   "files": [
