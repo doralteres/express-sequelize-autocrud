@@ -743,9 +743,9 @@
     eslint-visitor-keys "^3.3.0"
 
 "@vitest/coverage-v8@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-1.0.4.tgz#49193139399c37ddf16c23d96892ef32cd67a69a"
-  integrity sha512-xD6Yuql6RW0Ir/JJIs6rVrmnG2/KOWJF+IRX1oJQk5wGKGxbtdrYPbl+WTUn/4ICCQ2G20zbE1e8/nPNyAG5Vg==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-1.1.1.tgz#8cf41ef4c4e8bf979937452f5ab446e29e61aba1"
+  integrity sha512-TCXSh6sA92t7D5p7HJ64sPCi+szP8E3NiKTsR3YR8vVEVZB9yclQu2btktCthxahKBl7PwheP5OuejYg13xccg==
   dependencies:
     "@ampproject/remapping" "^2.2.1"
     "@bcoe/v8-coverage" "^0.2.3"
