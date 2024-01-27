@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.1.0...v0.2.0) (2024-01-27)
+
+
+### Features
+
+* ✨ add option to use findOne instead of findByPk ([#33](https://github.com/doralteres/express-sequelize-autocrud/issues/33)) ([375797e](https://github.com/doralteres/express-sequelize-autocrud/commit/375797e2ab09ef6c11a44f0cdb0c1bf0e09b4dfd))
+
 ## [0.1.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.0.14...v0.1.0) (2023-12-17)
 
 
