@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -45,21 +46,11 @@ jobs:
           node-version: 18
           registry-url: https://registry.npmjs.org/
       - run: yarn
-      - run: yarn release
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          release-type: node
       - run: yarn publish
+        if: ${{ steps.release.outputs.release_created }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: get version
-        id: version
-        uses: notiz-dev/github-action-json-property@release
-        with:
-          path: 'package.json'
-          prop_path: 'version'
-      - name: Push Release tag
-        run: git push --follow-tags origin main
-      - name: Create Release Changelog
-        run: npx extract-changelog-release > RELEASE_BODY.md
-      - uses: ncipollo/release-action@v1
-        with:
-          bodyFile: 'RELEASE_BODY.md'
-          tag: v${{steps.version.outputs.prop}}

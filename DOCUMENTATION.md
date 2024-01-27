@@ -139,6 +139,8 @@ All the parameters below are **Optional**.
 | Parameter | Type | Default value | Details |
 |---------------------- |------------------------------------------------------------------------------ |--------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **middleware** | Express Middleware function:<br>`(req, res, next) => void` | - | Middleware function that will be triggered before the sequelize operation. Check [middleware section](#middleware) |
+| **byField** 	| string 	| -             	| If set - will use `findOne` (default is `findByPk`) that will return the getOne results filter by a specific field. 	|
+
 
 In addition you can add to the config ANY sequelize [findByPk](https://sequelize.org/api/v6/class/src/model.js~model#static-method-findByPk) configurations. (except `where`).
 

@@ -17,7 +17,7 @@ const getOneRoute = (
     runCustomMiddleware(config.middleware),
     async (req, res) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const {middleware, ...sequelizeOptions} = config;
+      const {middleware, byField, ...sequelizeOptions} = config;
       try {
         const options = await buildOptionsFromConfig(
           sequelizeOptions,
@@ -25,9 +25,14 @@ const getOneRoute = (
           res
         );
 
-        const data = await model.findByPk(req.params.resourceId, {
-          ...options,
-        });
+        const data = await (byField
+          ? model.findOne({
+              ...options,
+              where: {[byField]: req.params.resourceId},
+            })
+          : model.findByPk(req.params.resourceId, {
+              ...options,
+            }));
         if (data) {
           res.json(data);
         } else {
