@@ -28,6 +28,25 @@ describe('getOne route', () => {
     expect(resp.statusCode).toBe(404);
   });
 
+  test('get existed name', async () => {
+    const resp = await supertest(
+      crudApp(sequelize, {
+        users: {model: 'users', operations: {getOne: {byField: 'username'}}},
+      })
+    ).get('/users/doralteres');
+    expect(resp.statusCode).toBe(200);
+    expect(resp.body.id).toBe(1);
+  });
+
+  test('get not-existed name', async () => {
+    const resp = await supertest(
+      crudApp(sequelize, {
+        users: {model: 'users', operations: {getOne: {byField: 'username'}}},
+      })
+    ).get('/users/123');
+    expect(resp.statusCode).toBe(404);
+  });
+
   test('get with include', async () => {
     const resp = await supertest(
       crudApp(sequelize, {

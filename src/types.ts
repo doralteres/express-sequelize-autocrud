@@ -39,7 +39,6 @@ export type customFields = sequelizePropOrFunc<customFieldCore>;
 
 interface operationFieldCore {
   middleware?: expressFunc;
-  //   customFunc?: expressFunc;
 }
 
 interface getListCore {
@@ -69,7 +68,9 @@ export interface getOneOptions
   extends operationFieldCore,
     expressCrudProps<
       Omit<NonNullFindOptions<Attributes<Model>>, 'where' | 'rejectOnEmpty'>
-    > {}
+    > {
+  byField?: string;
+}
 
 export interface createOptions
   extends operationFieldCore,
