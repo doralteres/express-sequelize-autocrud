@@ -15,7 +15,7 @@ const buildModelRoutes = (
   sequelize: Sequelize,
   config: sequelizeCrudConfigModel,
   logger: LoggerOptions
-) => {
+): Router => {
   const router = Router();
   const {model: m, operations} = config;
 

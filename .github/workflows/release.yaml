@@ -9,7 +9,7 @@ on:
       - '**.md'
       - '.github/**'
       - 'example/**'
-      - 'yarn.lock'
+      - 'pnpm-lock.yaml'
 
 jobs:
   build:
@@ -22,9 +22,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: yarn
-      - run: yarn lint
-      - run: yarn test
+      - run: pnpm i
+      - run: pnpm run lint
+      - run: pnpm run test
 
   publish:
     needs: build
@@ -45,12 +45,12 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org/
-      - run: yarn
+      - run: pnpm i
       - uses: google-github-actions/release-please-action@v4
         id: release
         with:
           release-type: node
-      - run: yarn publish
+      - run: pnpm publish
         if: ${{ steps.release.outputs.release_created }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
