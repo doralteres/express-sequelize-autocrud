@@ -1,4 +1,4 @@
-name: CI-Main
+name: CI-PR
 
 on:
   pull_request:
@@ -19,9 +19,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-      - run: yarn
-      - run: yarn lint
-      - run: yarn test --coverage
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: true
+      - run: pnpm run test --coverage
       - name: 'Report Coverage'
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2

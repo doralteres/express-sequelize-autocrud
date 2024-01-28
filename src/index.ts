@@ -9,7 +9,7 @@ const sequelizeCrud = (
   sequelize: Sequelize,
   config: sequelizeCrudConfig,
   options?: sequelizeCrudOptions
-) => {
+): Router => {
   const logger = options?.logging || defaultLogger;
   const router = Router();
   logger.info('Building CRUD API routes');

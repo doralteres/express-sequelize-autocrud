@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {type Express} from 'express';
 import sequelizeCrud, {
   type sequelizeCrudConfig,
   type sequelizeCrudOptions,
@@ -61,7 +61,7 @@ export const crudApp = (
   sequelize: Sequelize,
   config: sequelizeCrudConfig,
   options = defaultOption
-) => {
+): Express => {
   const app = express();
   app.use(json());
   app.use('/', sequelizeCrud(sequelize, config, options));

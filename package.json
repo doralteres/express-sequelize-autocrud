@@ -20,6 +20,7 @@
   "description": "Express Sequelize AutoCRUD: Simplify API development with automatic CRUD routes for Sequelize models in Express.js.",
   "license": "MIT",
   "devDependencies": {
+    "@types/body-parser": "^1.19.5",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.5",
     "@types/supertest": "^2.0.16",
@@ -43,9 +44,9 @@
     "clean": "gts clean",
     "compile": "tsc",
     "fix": "gts fix",
-    "prepare": "yarn compile",
-    "pretest": "yarn compile",
-    "posttest": "yarn lint",
+    "prepare": "pnpm run compile",
+    "pretest": "pnpm run compile",
+    "posttest": "pnpm run lint",
     "commit": "cz",
     "test": "vitest"
   },
