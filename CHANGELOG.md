@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v1.0.0...v1.1.0) (2024-02-03)
+
+
+### Features
+
+* ✨ add bulkCreate route ([#38](https://github.com/doralteres/express-sequelize-autocrud/issues/38)) ([7607fe9](https://github.com/doralteres/express-sequelize-autocrud/commit/7607fe9fb806390bd616d004c791e17e94d9d08c))
+
 ## [1.0.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v0.2.0...v1.0.0) (2024-01-28)
 
 
