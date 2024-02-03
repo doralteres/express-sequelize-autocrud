@@ -1,6 +1,7 @@
 import type {NextFunction, Request, Response, Router} from 'express';
 import type {
   Attributes,
+  BulkCreateOptions,
   CreateOptions,
   DestroyOptions,
   FindAndCountOptions,
@@ -78,6 +79,13 @@ export interface createOptions
   creatableFields?: customFields;
 }
 
+export interface bulkCreateOptions
+  extends operationFieldCore,
+    expressCrudProps<Omit<BulkCreateOptions<unknown>, 'transaction'>> {
+  creatableFields?: customFields;
+  path?: string;
+}
+
 export interface updateOptions
   extends operationFieldCore,
     expressCrudProps<Omit<UpdateOptions<unknown>, 'where' | 'transaction'>> {
@@ -94,6 +102,7 @@ type operationsType = {
   getList?: getListOptions;
   getOne?: getOneOptions;
   create?: createOptions;
+  bulkCreate?: bulkCreateOptions;
   update?: updateOptions;
   delete?: deleteOptions;
   custom?: customRoutesFunc;
