@@ -125,3 +125,6 @@ coverage/
 
 # sequelize
 *.sqlite
+
+# typedoc
+docs/
