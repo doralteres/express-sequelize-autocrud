@@ -90,13 +90,14 @@ export type sequelizeCrudConfig = {
 - **basepath** - Base path for all the sub-crud route
 - **basepath.model** - modelName(string) or sequelize model object
 
-  | Operation   | URL                                          |
-  | ----------- | -------------------------------------------- |
-  | **getList** | _GET_ `<API_URL>/<BASE_PATH>`                |
-  | **getOne**  | _GET_ `<API_URL>/<BASE_PATH>/:resourceId`    |
-  | **create**  | _POST_ `<API_URL>/<BASE_PATH>`               |
-  | **update**  | _PUT_ `<API_URL>/<BASE_PATH>/:resourceId`    |
-  | **delete**  | _DELETE_ `<API_URL>/<BASE_PATH>/:resourceId` |
+  | Operation      | URL                                          |
+  | -------------- | -------------------------------------------- |
+  | **getList**    | _GET_ `<API_URL>/<BASE_PATH>`                |
+  | **getOne**     | _GET_ `<API_URL>/<BASE_PATH>/:resourceId`    |
+  | **create**     | _POST_ `<API_URL>/<BASE_PATH>`               |
+  | **bulkCreate** | _POST_ `<API_URL>/<BASE_PATH>/bulk`          |
+  | **update**     | _PUT_ `<API_URL>/<BASE_PATH>/:resourceId`    |
+  | **delete**     | _DELETE_ `<API_URL>/<BASE_PATH>/:resourceId` |
 
   In the example below _getList_ URL will be `http://localhost:3000/crud/users` (in case the api runs @ localhost:300)
 
@@ -139,8 +140,7 @@ All the parameters below are **Optional**.
 | Parameter | Type | Default value | Details |
 |---------------------- |------------------------------------------------------------------------------ |--------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **middleware** | Express Middleware function:<br>`(req, res, next) => void` | - | Middleware function that will be triggered before the sequelize operation. Check [middleware section](#middleware) |
-| **byField** 	| string 	| -             	| If set - will use `findOne` (default is `findByPk`) that will return the getOne results filter by a specific field. 	|
-
+| **byField** | string | - | If set - will use `findOne` (default is `findByPk`) that will return the getOne results filter by a specific field. |
 
 In addition you can add to the config ANY sequelize [findByPk](https://sequelize.org/api/v6/class/src/model.js~model#static-method-findByPk) configurations. (except `where`).
 
@@ -154,6 +154,20 @@ All the parameters below are **Optional**.
 | ------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | **middleware**      | Express Middleware function:<br>`(req, res, next) => void`                   | -                                              | Middleware function that will be triggered before the sequelize operation. Check [middleware section](#middleware) |
 | **creatableFields** | `string[]`<br>or<br>`{ include: string[] }`<br>or<br>`{ exclude: string[] }` | { exclude: ['id', 'createdAt', 'updatedAt'], } | Which fields can be added to request body.                                                                         |
+
+In addition you can add to the config ANY sequelize [create](https://sequelize.org/api/v6/class/src/model.js~model#static-method-create) configurations. (except `transaction`).
+
+> Each config can be set hardcoded or with [expressCrudFunction](#expresscrudfunction) for getting the value dynamically based on user request.
+
+### bulkCreateOptions
+
+All the parameters below are **Optional**.
+
+| Parameter           | Type                                                                         | Default value                                  | Details                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **middleware**      | Express Middleware function:<br>`(req, res, next) => void`                   | -                                              | Middleware function that will be triggered before the sequelize operation. Check [middleware section](#middleware) |
+| **creatableFields** | `string[]`<br>or<br>`{ include: string[] }`<br>or<br>`{ exclude: string[] }` | { exclude: ['id', 'createdAt', 'updatedAt'], } | Which fields can be added to request body.                                                                         |
+| **path**            | `string`                                                                     | /bulk                                          | Path to define the POST request                                                                                    |
 
 In addition you can add to the config ANY sequelize [create](https://sequelize.org/api/v6/class/src/model.js~model#static-method-create) configurations. (except `transaction`).
 

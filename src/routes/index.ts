@@ -9,6 +9,7 @@ import updateRoute from './update.js';
 import deleteRoute from './delete.js';
 
 import type {LoggerOptions, sequelizeCrudConfigModel} from '../types.js';
+import bulkCreateRoute from './bulkCreate.js';
 
 const buildModelRoutes = (
   path: string,
@@ -31,6 +32,10 @@ const buildModelRoutes = (
   }
   if (operations.create) {
     createRoute(sequelize, model, router, operations.create, logger);
+    logger.info(['POST', path, '[create]'].join(' '));
+  }
+  if (operations.bulkCreate) {
+    bulkCreateRoute(sequelize, model, router, operations.bulkCreate, logger);
     logger.info(['POST', path, '[create]'].join(' '));
   }
   if (operations.update) {
