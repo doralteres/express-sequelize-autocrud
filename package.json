@@ -14,6 +14,7 @@
     "type": "git",
     "url": "https://github.com/doralteres/express-sequelize-autocrud.git"
   },
+  "homepage": "https://doralteres.github.io/express-sequelize-autocrud/",
   "bugs": {
     "url": "https://github.com/doralteres/express-sequelize-autocrud/issues"
   },
