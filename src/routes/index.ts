@@ -36,7 +36,13 @@ const buildModelRoutes = (
   }
   if (operations.bulkCreate) {
     bulkCreateRoute(sequelize, model, router, operations.bulkCreate, logger);
-    logger.info(['POST', path, '[create]'].join(' '));
+    logger.info(
+      [
+        'POST',
+        `${path}/${operations.bulkCreate.path || 'bulk'}`,
+        '[bulkCreate]',
+      ].join(' ')
+    );
   }
   if (operations.update) {
     updateRoute(sequelize, model, router, operations.update, logger);
