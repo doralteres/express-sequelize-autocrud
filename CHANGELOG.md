@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/doralteres/express-sequelize-autocrud/compare/v1.1.1...v1.2.0) (2024-11-05)
+
+
+### Features
+
+* :sparkles: support byField in update and delete routes ([5567b4c](https://github.com/doralteres/express-sequelize-autocrud/commit/5567b4c81c1a7cd9f9b4481be2f58b5887b6c177))
+
 ## [1.1.1](https://github.com/doralteres/express-sequelize-autocrud/compare/v1.1.0...v1.1.1) (2024-02-04)
 
 
