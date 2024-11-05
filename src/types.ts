@@ -90,11 +90,14 @@ export interface updateOptions
   extends operationFieldCore,
     expressCrudProps<Omit<UpdateOptions<unknown>, 'where' | 'transaction'>> {
   updatableFields?: customFields;
+  byField?: string;
 }
 
 export interface deleteOptions
   extends operationFieldCore,
-    expressCrudProps<Omit<DestroyOptions<unknown>, 'where' | 'transaction'>> {}
+    expressCrudProps<Omit<DestroyOptions<unknown>, 'where' | 'transaction'>> {
+  byField?: string;
+}
 
 type customRoutesFunc = (router: Router) => void;
 

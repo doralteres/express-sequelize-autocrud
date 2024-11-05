@@ -72,7 +72,7 @@ describe('update route', () => {
     expect(resp.statusCode).toBe(400);
   });
 
-  test('create with custom creatable fields (include allowed)', async () => {
+  test('update with custom creatable fields (include allowed)', async () => {
     const resp = await supertest(
       crudApp(sequelize, {
         users: {
@@ -90,7 +90,7 @@ describe('update route', () => {
     expect(resp.body.affectedRows).toBe(1);
   });
 
-  test('create with custom creatable fields (exclude allowed)', async () => {
+  test('update with custom creatable fields (exclude allowed)', async () => {
     const resp = await supertest(
       crudApp(sequelize, {
         users: {
@@ -101,6 +101,22 @@ describe('update route', () => {
     )
       .put('/users/2')
       .send({username: 'lastOne'});
+    expect(resp.statusCode).toBe(201);
+    expect(resp.body).toHaveProperty('affectedRows');
+    expect(resp.body.affectedRows).toBe(1);
+  });
+
+  test('update with custom wherable field (byField)', async () => {
+    const resp = await supertest(
+      crudApp(sequelize, {
+        users: {
+          model: 'users',
+          operations: {update: {byField: 'username'}},
+        },
+      })
+    )
+      .put('/users/doralteres')
+      .send({birthday: new Date().toISOString()});
     expect(resp.statusCode).toBe(201);
     expect(resp.body).toHaveProperty('affectedRows');
     expect(resp.body.affectedRows).toBe(1);

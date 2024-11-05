@@ -22,17 +22,19 @@ const updateRoute = (
     runCustomMiddleware(config.middleware),
     checkBodyFields(config.updatableFields || DEFAULT_UPDATABLE_FIELDS),
     async (req, res) => {
-      const {middleware, updatableFields, ...sequelizeOptions} = config;
+      const {middleware, updatableFields, byField, ...sequelizeOptions} =
+        config;
       try {
         const options = await buildOptionsFromConfig(
           sequelizeOptions,
           req,
           res
         );
+        const whereField = byField || 'id';
         await sequelize.transaction(async t => {
           const data = await model.update(req.body, {
             ...options,
-            where: {id: req.params.resourceId},
+            where: {[whereField]: req.params.resourceId},
             returning: true,
             transaction: t,
           });

@@ -33,6 +33,16 @@ describe('delete route', () => {
     expect(resp.body.affectedCount).toBe(0);
   });
 
+  test('delete with custom wherable field (byField)', async () => {
+    const resp = await supertest(
+      crudApp(sequelize, {
+        users: {model: 'users', operations: {delete: {byField: 'username'}}},
+      })
+    ).delete('/users/doralteres');
+    expect(resp.statusCode).toBe(201);
+    expect(resp.body.affectedCount).toBe(1);
+  });
+
   test('sequelize wrong config', async () => {
     const resp = await supertest(
       crudApp(sequelize, {

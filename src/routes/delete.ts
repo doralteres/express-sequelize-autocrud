@@ -19,17 +19,18 @@ const deleteRoute = (
     '/:resourceId',
     runCustomMiddleware(config.middleware),
     async (req, res) => {
-      const {middleware, ...sequelizeOptions} = config;
+      const {middleware, byField, ...sequelizeOptions} = config;
       try {
         const options = await buildOptionsFromConfig(
           sequelizeOptions,
           req,
           res
         );
+        const whereField = byField || 'id';
         await sequelize.transaction(async t => {
           const data = await model.destroy({
             ...options,
-            where: {id: req.params.resourceId},
+            where: {[whereField]: req.params.resourceId},
             transaction: t,
           });
           res.status(201).json({affectedCount: data});
