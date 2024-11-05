@@ -6,21 +6,21 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.1",
     "express-sequelize-autocrud": "link:..",
-    "sequelize": "^6.35.2",
-    "sqlite3": "^5.1.6",
-    "winston": "^3.11.0"
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7",
+    "winston": "^3.16.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
-    "@types/node": "^20.10.4",
-    "@types/sequelize": "^4.28.19",
+    "@types/node": "^20.17.6",
+    "@types/sequelize": "^4.28.20",
     "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.6.3"
   },
   "scripts": {
     "compile": "rm -r ./dist && tsc",
